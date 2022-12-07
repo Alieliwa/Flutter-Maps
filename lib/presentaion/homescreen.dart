@@ -39,7 +39,14 @@ class _HomeScreenState extends State<HomeScreen> {
         strokeColor: Colors.red));
     return polygonSet;
   }
-
+  Set<Circle> circles = Set.from([ Circle(
+    circleId: CircleId("1"),
+    strokeColor: Colors.blue,
+    strokeWidth: 5,
+    center: LatLng(37.43296265331129, -122.08832357078792),
+    // fillColor: Colors.black,
+    radius: 400,
+  )]);
 
 
   @override
@@ -47,7 +54,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         body: GoogleMap(
-          mapType: MapType.hybrid,
+          mapType: MapType.normal,
+          myLocationEnabled: true,
+          myLocationButtonEnabled: true,
           initialCameraPosition: const CameraPosition(
             target: LatLng(37.43296265331129, -122.08832357078792),
             zoom: 15,
@@ -69,8 +78,10 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             );
           },
-          markers: myMarkers,
-          polygons: myPolygon(),
+          onCameraMove: null,
+          circles: circles,
+          // markers: myMarkers,
+          // polygons: myPolygon(),
         ),
       ),
     );
