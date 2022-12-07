@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -16,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return   SafeArea(
+    return SafeArea(
       child: Scaffold(
         body: GoogleMap(
           mapType: MapType.hybrid,
@@ -26,10 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           onMapCreated: (GoogleMapController controller) {
             setState(() {
-              myMarkers.add(const Marker(markerId: MarkerId('1'),position:LatLng(30.136738,31.326208) ,));
-            });
+              myMarkers.add( Marker(markerId: const MarkerId('1'),
+                  position: const LatLng(30.136738, 31.326208),
+                  infoWindow: InfoWindow(
+                    title: 'Ali ELiwa',
+                    snippet: 'Welcome every body',
+                    onTap:(){
+                      print('you clickedb,afllkfmrekafoierjfija');
+                    },
+                  ) ,
+              ),
+              );
+            },);
           },
           markers: myMarkers,
+
         ),
       ),
     );
